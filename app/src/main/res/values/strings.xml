@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Sklep Allegro</string>
+    <string name="splash_title">Recruitment Task</string>
+    <string name="amount">0 zł</string>
+    <string name="price">price</string>
+    <string name="name">name</string>
+    <string name="offer_image">offer</string>
+    <string name="description">Description</string>
+    <string name="exit">Exit</string>
+</resources>
