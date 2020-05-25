@@ -31,6 +31,11 @@ class HomeActivity : AppCompatActivity(), VolleyListener {
         setContentView(R.layout.activity_home)
         Paper.init(this);
 
+        checkConnection()
+
+    }
+
+    private fun checkConnection() {
         if (NetworkManager.isNetworkOnline(this)) {
             jsonHandler = JsonHandler(this)
             jsonHandler!!.makeRequest()
@@ -39,7 +44,6 @@ class HomeActivity : AppCompatActivity(), VolleyListener {
             setAdapter()
             Toast.makeText(this, "No network connection", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun setAdapter() {
@@ -53,8 +57,11 @@ class HomeActivity : AppCompatActivity(), VolleyListener {
             )
         )
         adapterOnItemClickListener(adapter)
-        var offersList: MutableList<Offer>? = null
+        writeDataToAdapter(adapter)
+    }
 
+    private fun writeDataToAdapter(adapter: GroupAdapter<GroupieViewHolder>) {
+        var offersList: MutableList<Offer>? = null
         if(NetworkManager.isNetworkOnline(this)) {
             offersList = jsonHandler?.responseList!!
             Paper.book().write("offers", offersList);
